@@ -39,7 +39,7 @@ function! cowriter#Request(text)
 
 endfunction
 
-function! CoWrite()
+function! cowriter#Complete()
     " Get the current file up to the cursor and send (as a prompt) to the
     " openai gpt3 api to get a completion. Then insert the completion.
     

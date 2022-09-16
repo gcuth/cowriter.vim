@@ -20,8 +20,8 @@ You bring your own API key. You use at your own risk.
 
 ## Usage
 
-Map `:call CoWrite()` to something convenient in your `.vimrc`, such as
+Map `:call cowriter#Complete()` to something convenient in your `.vimrc`, such as
 
 ```
-nnoremap <leader>c :call CoWrite()<CR>
+nnoremap <leader>c :call cowriter#Complete()<CR>
 ```
