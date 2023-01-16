@@ -4,6 +4,17 @@ if exists('g:autoloaded_cowriter')
 endif
 let g:autoloaded_cowriter = 1
 
+
+function! cowriter#TrimPrompt(text)
+    " Take a chunk of text and reduce it to a reasonable prompt length
+    " by removing from the beginning of the list
+    let l:words = split(a:text, '\s\+')
+    if len(l:words) > 2000
+        let l:words = l:words[-2000:]
+    endif
+    return join(l:words, ' ')
+endfunction
+
 function! cowriter#Request(text)
     " Take a chunk of text as a prompt and send it to the openai gpt3 api
     " to get a response
@@ -19,7 +30,7 @@ function! cowriter#Request(text)
                 \ 'max_tokens': max_tokens,
                 \ 'temperature': temperature,
                 \ 'n': 1,
-                \ 'prompt': substitute(trim(a:text), '"' , '\\"', 'g'),
+                \ 'prompt': substitute(cowriter#TrimPrompt(a:text), '"' , '\\"', 'g'),
                 \ }
 
     " turn the request dictionary into a json string
